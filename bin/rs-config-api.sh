@@ -39,10 +39,11 @@ read -rp 'RightScale API Version (e.g. 1.0): ' rs_api_version
 done
 
 # confirmation
+clear
 echo
 echo '== Confirmation =='
 echo "User: $rs_api_user"
-echo "Password: $rs_api_password"
+echo "Password: <hidden>"
 echo "Account ID: $rs_api_account_id"
 echo "API Version: $rs_api_version"
 echo "=="
