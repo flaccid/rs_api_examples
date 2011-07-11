@@ -14,3 +14,5 @@ rs_api_account_id=$rs_api_account_id
 rs_api_user="$rs_api_user"
 rs_api_password="$rs_api_password"
 EOF
+
+rs-login.sh
