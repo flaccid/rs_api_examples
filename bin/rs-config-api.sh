@@ -2,6 +2,8 @@
 
 # rs-config-api.sh
 
+touch "$HOME/.rightscale/rs_api_config.sh"
+touch "$HOME/.rightscale/rs_api_creds.sh"
 . "$HOME/.rightscale/rs_api_config.sh"
 . "$HOME/.rightscale/rs_api_creds.sh"
 
