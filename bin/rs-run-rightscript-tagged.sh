@@ -1,10 +1,9 @@
 #!/bin/bash -e
 
 # rs-run-rightscript-tagged.sh right_script_id tag [additional_postdata]
-#
-# e.g.	rs-run-rightscript.sh 220337 "node:hostname=foo.bar.suf"
-#		rs-run-rightscript.sh 400347 "node:hostname" "-d 'server[parameters][DOWNLOAD_DIR]=text:/tmp'"
-#   
+
+# e.g.   rs-run-rightscript-tagged.sh 220337 "node:hostname=foo.bar.suf"
+#        rs-run-rightscript-tagged.sh 400347 "node:hostname" "-d 'server[parameters][DOWNLOAD_DIR]=text:/tmp'"
 
 [[ ! $1 ]] && echo 'No right_script ID provided, exiting.' && exit 1
 [[ ! $2 ]] && echo 'No tag ID provided, exiting.' && exit 1
