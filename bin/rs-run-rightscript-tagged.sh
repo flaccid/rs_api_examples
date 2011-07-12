@@ -44,5 +44,3 @@ while read server_id; do
 	#echo "+ $api_cmd"
 	$api_cmd
 done <<< "$server_ids"
-
-
