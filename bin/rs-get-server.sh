@@ -1,6 +1,6 @@
 #!/bin/sh -e
 
-# rs-get-server <server_id> [current]
+# rs-get-server.sh <server_id> [current]
 
 [[ ! $1 ]] && echo 'No server ID provided.' && exit 1
 
