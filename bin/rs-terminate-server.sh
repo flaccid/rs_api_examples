@@ -1,4 +1,4 @@
-#!/bin/sh -e
+#!/bin/bash -e
 
 # rs-terminate-server.sh <server_id>
 
@@ -13,7 +13,7 @@ stop_server() {
 	echo "GET: $url"
     stop_result=$(curl -d api_version="$rs_api_version" -b "$rs_api_cookie" -sL -w "\\n%{http_code} %{url_effective}" "$url")
 	stop_code=$(tail -n1 <<< $stop_result | awk '{print $1}')
-	if [[ $stop_result = *denied* ]] || [ ! "$stop_code" = "201" ]; then
+	if [[ "$stop_result" = *denied* ]] || [ ! "$stop_code" = "201" ]; then
 		echo "response: $stop_result"
 		echo 'Failed to stop server.'
 		exit 1
