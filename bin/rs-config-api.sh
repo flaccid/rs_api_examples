@@ -1,7 +1,8 @@
-#!/bin/sh -e
+# !/bin/sh -e
 
 # rs-config-api.sh
 
+mkdir -p "$HOME/.rightscale"
 touch "$HOME/.rightscale/rs_api_config.sh"
 touch "$HOME/.rightscale/rs_api_creds.sh"
 . "$HOME/.rightscale/rs_api_config.sh"
