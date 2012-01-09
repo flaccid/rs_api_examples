@@ -2,7 +2,7 @@
 
 # rs-get-array-instances <server_array_id> [<api_version>]
 
-if [ ! $1 ]; then 
+if [ ! "$1" ]; then 
 	echo 'No server array ID provided, exiting.'
 	echo "Usage: rs-get-array-instances <server_array_id> [<api_version>]"
 	exit 1
