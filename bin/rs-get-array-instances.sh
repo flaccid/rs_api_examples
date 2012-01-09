@@ -16,7 +16,6 @@ array_id="$1"
 
 if [ "$rs_api_version" = 1.5 ]; then
 	url="https://my.rightscale.com/api/server_arrays/$array_id/current_instances.xml"
-	rs_api_version=1.5
 else
 	url="https://my.rightscale.com/api/acct/$rs_api_account_id/server_arrays/$array_id"
 fi
