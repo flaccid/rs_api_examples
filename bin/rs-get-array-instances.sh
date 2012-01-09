@@ -1,4 +1,4 @@
-# !/bin/sh -e
+#! /bin/sh -e
 
 # rs-get-array-instances <server_array_id> [<api_version>]
 
