@@ -18,7 +18,7 @@ api_url="https://my.rightscale.com/api/acct/$rs_api_account_id/server_arrays/$se
 
 echo "Running RightScript [$rightscript_id] on Server Array [$server_array_id]."
 echo "GET: $api_url"
-curl -H X-API-VERSION:"$rs_api_version" -X POST -g \
+curl -H X-API-VERSION:"$rs_api_version" -X POST \
 -b "$rs_api_cookie" \
 -d "server_array[right_script_href]=https://my.rightscale.com/api/acct/$rs_api_account_id/right_scripts/$rightscript_id" \
 -d "server_array[server_template_hrefs]=https://my.rightscale.com/api/acct/$rs_api_account_id/ec2_server_templates/$server_template_id" \
