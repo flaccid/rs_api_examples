@@ -2,8 +2,11 @@
 
 # rs-get-sketchy-data.sh <server_id> <plugin_name> <plugin_type> <start> <end>
 # example: rs-get-sketchy-data.sh 1234 cpu-0 cpu-idle -3600 0
+# reference: http://support.rightscale.com/rdoc/ApiR1V0/Docs/ApiComponents.html
 
-( [ ! $1 ] || [ ! $2 ] || [ ! $3 ] || [ ! $4 ] || [ ! $5 ] ) && echo 'Insufficent options.\n Usage: rs-get-sketchy-data.sh <server_id> <plugin_name> <plugin_type> <start> <end>' && exit 1
+( [ ! $1 ] || [ ! $2 ] || [ ! $3 ] || [ ! $4 ] || [ ! $5 ] ) && \
+echo 'Insufficent options.\n Usage: rs-get-sketchy-data.sh <server_id> <plugin_name> <plugin_type> <start> <end>' && \
+exit 1
 
 . "$HOME/.rightscale/rs_api_config.sh"
 . "$HOME/.rightscale/rs_api_creds.sh"
