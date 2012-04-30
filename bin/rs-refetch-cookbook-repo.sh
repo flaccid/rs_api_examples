@@ -2,12 +2,10 @@
 
 # rs-refetch-cookbook-repo.sh <cookbook_repos_id>
 
-[ -e "$HOME"/rightscale ] || ( mkdir -p "$HOME"/rightscale && chmod -R 700 "$HOME"/.rightscale )
+[[ ! $1 ]] && echo 'No cookbooks_repos ID provided.' && exit 1
 
 . "$HOME/.rightscale/rs_api_config.sh"
 . "$HOME/.rightscale/rs_api_creds.sh"
-
-[[ ! $1 ]] && echo 'No cookbooks_repos ID provided.' && exit 1
 
 #rs-login-dashboard.sh (run this first to ensure current session)
 
