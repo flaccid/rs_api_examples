@@ -2,7 +2,7 @@
 
 # rs-delete-deployment <deployment_id>
 
-[[ ! $1 ]] && echo 'No deployment ID provided, exiting.' && exit 1
+[ ! $1 ] && echo 'No deployment ID provided, exiting.' && exit 1
 
 . "$HOME/.rightscale/rs_api_config.sh"
 . "$HOME/.rightscale/rs_api_creds.sh"
