@@ -5,7 +5,11 @@
 # example: rs-get-monitoring-graph.sh 1234 cpu-0/cpu_overview "CPU Overview" day large "Australia/Sydney"
 
 [[ ! $1 ]] && echo 'No server ID provided, exiting.' && exit 1
-[[ ! $2 ]] && echo 'No period provided, exiting.' && exit 1
+[[ ! $2 ]] && echo 'No graph name provided, exiting.' && exit 1
+[[ ! $3 ]] && echo 'No title ID provided, exiting.' && exit 1
+[[ ! $4 ]] && echo 'No period provided, exiting.' && exit 1
+[[ ! $5 ]] && echo 'No size ID provided, exiting.' && exit 1
+[[ ! $6 ]] && echo 'No timezone provided, exiting.' && exit 1
 
 . "$HOME/.rightscale/rs_api_config.sh"
 . "$HOME/.rightscale/rs_api_creds.sh"
