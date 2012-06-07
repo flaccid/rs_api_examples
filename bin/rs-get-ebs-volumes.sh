@@ -1,6 +1,6 @@
-#!/bin/bash -e
+#!/bin/sh -e
 
-# rs-get-ebs-volumes
+# rs-get-ebs-volumes.sh
 
 . "$HOME/.rightscale/rs_api_config.sh"
 . "$HOME/.rightscale/rs_api_creds.sh"
