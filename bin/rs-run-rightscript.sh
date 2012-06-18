@@ -18,6 +18,14 @@ api_url="https://my.rightscale.com/api/acct/$rs_api_account_id/servers/$server_i
 
 echo "Running RightScript [$rightscript_href] on Server [$server_id]."
 echo "GET: $api_url"
+
 api_result=$(curl -s -S -i -X POST -b "$rs_api_cookie" -H X-API-VERSION:"$rs_api_version" -d server[right_script_href]="$rightscript_href" "$api_url")
 
-echo "$api_result" | awk '/^Location:/ { print $2 }'
+case "$api_result" in 
+  *Status:\ 201*)
+    echo "$api_result" | awk '/^Location:/ { print $2 }'
+  ;;
+  *)
+    echo "FAILED: $api_result"
+  ;;
+esac
