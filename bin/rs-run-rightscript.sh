@@ -1,8 +1,8 @@
 #!/bin/bash -e
 
-# rs-run-rightscript <server_id> <right_script_id> [[extra curl post params]]
+# rs-run-rightscript.sh <server_id> <right_script_id> [[extra curl post params]]
 
-# e.g.   rs-run-rightscript-array.sh 1234 4321 "server[parameters][HELLO_WORLD_TEXT]=text:hello world" "server[ignore_lock]=true"
+# e.g.   rs-run-rightscript.sh 1234 4321 "server[parameters][HELLO_WORLD_TEXT]=text:hello world" "server[ignore_lock]=true"
 
 [[ ! $1 ]] && echo 'No server_id ID provided, exiting.' && exit 1
 [[ ! $2 ]] && echo 'No right_script_id ID provided, exiting.' && exit 1
