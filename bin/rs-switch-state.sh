@@ -3,6 +3,7 @@
 # rs-switch-state.sh [operational|booting|decommissioning|stranded]
 
 # e.g. rs-switch-state.sh operational
+# Note: if this script is not run on the instance being switched, the server's current instance's RS_API_URL must be set in env.
 
 [[ ! $1 ]] && echo 'No state provided.' && exit 1
 
