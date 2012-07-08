@@ -1,17 +1,16 @@
 #!/bin/sh -e
 
-# rs-get-server.sh <server_id> [current]
+# rs-get-server.sh <server_id> [current] [settings]
 
 [[ ! $1 ]] && echo 'No server ID provided.' && exit 1
 
 . "$HOME/.rightscale/rs_api_config.sh"
 . "$HOME/.rightscale/rs_api_creds.sh"
 
-if [ "$2" ]; then
-    current="/$2"
-fi
+[ "$2" = 'current' ] && current="/current"
+[ "$3" = 'settings' ] && settings="/settings"
 
-url="https://my.rightscale.com/api/acct/$rs_api_account_id/servers/$1$current"
+url="https://my.rightscale.com/api/acct/$rs_api_account_id/servers/$1$current$settings"
 echo "GET: $url"
 server_xml=$(curl -s -H "X-API-VERSION: $rs_api_version" -b "$rs_api_cookie" "$url")
 echo "$server_xml"
