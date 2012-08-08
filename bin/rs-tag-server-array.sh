@@ -24,7 +24,7 @@ echo "Setting tag, '$2' on server array, $server_array_href."
 
 api_url="https://my.rightscale.com/api/acct/$rs_api_account_id/tags/set"
 echo "GET: $api_url"
-api_result=$(curl -S -s -i -X PUT -b "$rs_api_cookie" -H X-API-VERSION:"$rs_api_version" -d resource_href="$server_array_href" -d tags="$tags" "$api_url")
+api_result=$(curl -S -s -i -X PUT -b "$rs_api_cookie" -H X-API-VERSION:"$rs_api_version" -d resource_href="$server_array_href" -d tags[]="$tags" "$api_url")
 
 case "$api_result" in 
   *Status:\ 204*)
