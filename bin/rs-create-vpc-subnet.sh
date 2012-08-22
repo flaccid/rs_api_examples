@@ -2,7 +2,7 @@
 
 # rs-create-vpc-subnet.sh <rs_cloud_id> <rs_vpc_id> <subnet_name> <cidr_block> <rs_vailability_zone_id> <description>
 
-# e.g. rs-create-vpc-subnet.sh 4 200800001 'My super secret subnet' "10.1.1.0/24" 123320 'This is a test VPC subnet.'
+# e.g. rs-create-vpc-subnet.sh 4 200800001 'FoobarSubnet' "10.1.1.0/24" 123320 'This is a test VPC subnet.'
 
 # RightScale EC2 AZ IDs
 #123319 ap-southeast-1a
@@ -30,19 +30,22 @@ rs-login-dashboard.sh               # (run this first to ensure current session)
 url="https://my.rightscale.com/acct/$rs_api_account_id/clouds/$rs_cloud_id/vpc_subnets"
 echo "POST: $url"
 
-api_result=$(curl -v -s -S -b "$HOME/.rightscale/rs_dashboard_cookie.txt" -X POST -d vpc_subnet[vpc_id]="$rs_vpc_id" -d vpc_subnet[name]="$subnet_name" -d vpc_subnet[cidr_block]="$cidr_block" -d vpc_subnet[ec2_availability_zone_id]="$rs_availability_zone_id" -d vpc_subnet[description]="$subnet_desc" "$url" 2>&1)
+api_result=$(curl -v -s -S -b "$HOME/.rightscale/rs_dashboard_cookie.txt" \
+-X POST \
+-H "Referer:https://my.rightscale.com/acct/$rs_api_account_id/clouds/$rs_cloud_id/vpcs/$rs_vpc_id" \
+-H "User-Agent:Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_4) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/21.0.1180.82 Safari/537.1" \
+-H "X-Prototype-Version:1.6.1" \
+-H "X-Requested-With:XMLHttpRequest" \
+-d vpc_subnet[vpc_id]="$rs_vpc_id" -d vpc_subnet[name]="$subnet_name" -d vpc_subnet[cidr_block]="$cidr_block" -d vpc_subnet[ec2_availability_zone_id]="$rs_availability_zone_id" -d vpc_subnet[description]="$subnet_desc" \
+"$url" 2>&1)
 
 echo "$api_result" > /tmp/rs_api_examples.output.txt
 
-if grep flash <<< $api_result > /dev/null 2>&1; then
-     echo "$api_result"
+if ! grep -i 'successfully created' <<< $api_result > /dev/null 2>&1; then
+     echo "$api_result" | grep X-Flash | sed 's/<[^>]*>//g'
      echo "Creation of VPC subnet, '$subnet_name' failed!"
      exit 1
 fi
 
-case $api_result in
-    *)
-        #echo 'There appears to have been an issue creating the VPC, please check the result.'
-        exit 0;
-    ;;
-esac
+echo "$rs_api_result" | grep "/acct/$rs_api_account_id/clouds/$rs_cloud_id/vpc_subnets/" | perl -F\" -alne 'print $F[1]' | grep acct | head -n1
+echo "$api_result" | grep subnet- | sed -e 's/.*<td>\(.*\)<\/td>.*/\1/p' | head -n 1 | sed 's/  //g'
