@@ -47,18 +47,17 @@ if grep flash_message <<< $api_result > /dev/null 2>&1; then
 fi
 
 case $api_result in
-	*"302 Found"*)
-		echo "VPC '$vpc_name' successfuly created."
-		rs-query-cloud.sh "$rs_cloud_id"    # (optional, to refresh dash index view of the region's VPCs; just to be sure its updated)
-		vpc_rs_url="$(echo "$api_result" | awk '/Location:/ { print $3 }')"     # rs href
-		vpc_rs_url="${vpc_rs_url//[[:space:]]}"
+    *"302 Found"*)
+        echo "VPC '$vpc_name' successfuly created."
+        rs-query-cloud.sh "$rs_cloud_id"    # (optional, to refresh dash index view of the region's VPCs; just to be sure its updated)
+        vpc_rs_url="$(echo "$api_result" | awk '/Location:/ { print $3 }')"     # rs href
+        vpc_rs_url="${vpc_rs_url//[[:space:]]}"
 
-	    echo "$vpc_rs_url"
+        echo "$vpc_rs_url"
 
         # by the vpc's view
         #curl -s -b "$HOME/.rightscale/rs_dashboard_cookie.txt" \
         #-H "X-Requested-With: XMLHttpRequest" \
-        #-H "Referer: https://my.rightscale.com/acct/$rs_api_account_id/clouds/$rs_cloud_id/vpcs" \
         #"$vpc_rs_url" | grep vpc- | sed 's/<[^>]*>//g' | sed -e 's/.*<td>\(.*\)<\/td>.*/\1/p' | head -n 1 | sed 's/  //g'  # aws vpc ID
 
         # by index (inaccurate, vpc name must be unique)
@@ -66,10 +65,9 @@ case $api_result in
         -H "X-Requested-With: XMLHttpRequest" \
         -H "Referer: https://my.rightscale.com/acct/$rs_api_account_id/clouds/$rs_cloud_id/vpcs" \
         "https://my.rightscale.com/acct/$rs_api_account_id/clouds/$rs_cloud_id/vpcs;vpcs" | grep "$vpc_name" -C 3 | grep vpc- | sed -e 's/.*<td>\(.*\)<\/td>.*/\1/p' | head -n 1 | sed 's/  //g'  # aws vpc ID
-
-	;;
-	*)
-	    echo 'There appears to have been an issue creating the VPC, please check the result.'
-	    exit 255;
-	;;
+    ;;
+    *)
+        echo 'There appears to have been an issue creating the VPC, please check the result.'
+        exit 255;
+    ;;
 esac
