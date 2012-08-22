@@ -47,5 +47,5 @@ if ! grep -i 'successfully created' <<< $api_result > /dev/null 2>&1; then
      exit 1
 fi
 
-echo "$rs_api_result" | grep "/acct/$rs_api_account_id/clouds/$rs_cloud_id/vpc_subnets/" | perl -F\" -alne 'print $F[1]' | grep acct | head -n1
+echo "$api_result" | grep "/acct/$rs_api_account_id/clouds/$rs_cloud_id/vpc_subnets/" | perl -F\" -alne 'print $F[1]' | grep acct | head -n1
 echo "$api_result" | grep subnet- | sed -e 's/.*<td>\(.*\)<\/td>.*/\1/p' | head -n 1 | sed 's/  //g'
