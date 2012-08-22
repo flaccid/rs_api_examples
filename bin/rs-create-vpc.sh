@@ -1,7 +1,11 @@
 #! /bin/bash
 
 # rs-create-vpc.sh <rs_cloud_id> <name> <cidr_block> <instance_tenancy> <description>
+
 # e.g. rs-create-vpc.sh 4 'Red Dwarf' "10.1.1.0/24" default 'This is a test VPC.'
+
+# note on output: the 2nd last line is the rs vpc href returned and the last line is the aws vpc id returned (for successful runs)
+# e.g. limiting the output: rs-create-vpc.sh 4 'Red Dwarf' "10.1.1.0/24" default 'This is a test VPC.' | tail -n 2
 
 # RightScale (public) cloud IDs
 #1  US-East
