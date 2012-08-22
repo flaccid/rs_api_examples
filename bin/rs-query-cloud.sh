@@ -14,6 +14,8 @@
 . "$HOME/.rightscale/rs_api_config.sh"
 . "$HOME/.rightscale/rs_api_creds.sh"
 
+[[ ! $1 ]] && echo 'No RightScale cloud ID provided.' && exit 1
+
 rs_cloud_id="$1"
 
 #url="https://my.rightscale.com/acct/$rs_api_account_id/clouds/$rs_cloud_id/ec2_instances/requery"
