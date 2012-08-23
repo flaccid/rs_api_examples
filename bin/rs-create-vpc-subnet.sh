@@ -1,6 +1,6 @@
 #! /bin/bash
 
-# rs-create-vpc-subnet.sh <rs_cloud_id> <rs_vpc_id> <subnet_name> <cidr_block> <rs_vailability_zone_id> <description>
+# rs-create-vpc-subnet.sh <rs_cloud_id> <rs_vpc_id> <subnet_name> <cidr_block> <rs_ec2_availability_zone_id> <description>
 
 # e.g. rs-create-vpc-subnet.sh 4 200800001 'FoobarSubnet' "10.1.1.0/24" 123320 'This is a test VPC subnet.'
 
