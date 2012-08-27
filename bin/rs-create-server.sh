@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash -ex
 
 # rs-create-server.sh <nickname> <rs_cloud_id> <deployment_id> <server_template_id> <ec2_instance_type> <nat_enabled> <ec2_ssh_key_id> <vpc_subnet_id> <ec2_security_group_ids> 
 # FIXME 
@@ -90,7 +90,7 @@ rs-login-dashboard.sh               # (run this first to ensure current s
 url="https://my.rightscale.com/acct/$rs_api_account_id/servers"
 echo "POST: $url"
 
-result=$(curl -v -S -s -X POST \
+result=$(curl -v       -X POST \
 -b "$HOME/.rightscale/rs_dashboard_cookie.txt" \
 -H "Referer:https://my.rightscale.com/acct/$rs_api_account_id/servers/new?cloud_id=$rs_cloud_id&deployment_id=$deployment_id" \
 -H "User-Agent:Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_4) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/21.0.1180.82 Safari/537.1" \
