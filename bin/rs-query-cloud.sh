@@ -14,7 +14,7 @@
 . "$HOME/.rightscale/rs_api_config.sh"
 . "$HOME/.rightscale/rs_api_creds.sh"
 
-[[ ! $1 ]] && echo 'No RightScale cloud ID provided.' && exit 1
+[ ! "$1" ] && echo 'No RightScale cloud ID provided.' && exit 1
 
 rs_cloud_id="$1"
 
