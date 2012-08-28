@@ -1,8 +1,11 @@
-#! /bin/bash -ex
+#!/bin/bash -ex
 
-# rs-create-server.sh <nickname> <rs_cloud_id> <deployment_id> <server_template_id> <ec2_instance_type> <ec2_pricing> <nat_enabled> <ec2_ssh_key_id> <vpc_subnet_id> <ec2_security_group_ids> <ec2_elastic_ip_id>
+# rs-create-server.sh <nickname> <rs_cloud_id> <deployment_id> <server_template_id> <ec2_instance_type> <nat_enabled> <ec2_ssh_key_id> <vpc_subnet_id> <ec2_security_group_ids> 
+# FIXME 
 
-# e.g. rs-create-server.sh 'Starbug' 4 281233001 252761001 't1.micro' 'on_demand' 0 209585 201548001 126311
+# e.g. rs-create-server.sh 'Starbug' 4 281233001 252761001 't1.micro' 'on_demand' 0 209585 201548001 "126311 12345"
+
+# Note: If using multiple ec2_security_group_ids, ensure double quotes "" are used, e.g. "126311 12345"
 
 # RightScale (public) cloud IDs
 #1  US-East
@@ -26,7 +29,6 @@
 # runnable[ec2_ssh_key_id]:298336
 # runnable[ec2_elastic_ip_id]:
 # runnable[associate_eip_at_launch]:0
-# runnable[associate_eip_at_launch]:1
 # runnable[ec2_security_group_ids][]:261902
 # runnable[ec2_security_group_ids][]:261903
 # runnable[ec2_availability_zone_id]:
@@ -58,12 +60,14 @@ rs_cloud_id="$2"
 deployment_id="$3"
 server_template_id="$4"
 ec2_instance_type="$5"
-ec2_pricing="$6"
-nat_enabled="$7"
-ec2_ssh_key_id="$8"
-vpc_subnet_id="$9"
-ec2_security_group_ids=""
+nat_enabled="$6"
+ec2_ssh_key_id="$7"
+vpc_subnet_id="$8"
+ec2_security_group_ids="$9"
+
+# This script assumes no EIP and on_demand only
 ec2_elastic_ip_id=""
+ec2_pricing="on_demand"
 
 ari_image_uid=""
 aki_image_uid=""
@@ -74,12 +78,11 @@ ec2_availability_zone_id=""
 max_spot_price="0.025"
 ec2_placement_group_id=""
 
-runnable__ec2_security_group_ids_str=
-for f in ${runnable__ec2_security_group_ids[*]}
+# In case of multiple security groups, set up the params for curl
+ec2_security_group_ids_str=
+for f in $ec2_security_group_ids
 do
-echo "[$f]"
-   runnable__ec2_security_group_ids_str="-d runnable[ec2_security_group_ids]=$f $runnable__ec2_security_group_ids_str"
-echo "[$runnable__ec2_security_group_ids_str]"
+   ec2_security_group_ids_str="-d runnable[ec2_security_group_ids][]=$f $ec2_security_group_ids_str"
 done
 
 rs-login-dashboard.sh               # (run this first to ensure current session)
@@ -87,7 +90,7 @@ rs-login-dashboard.sh               # (run this first to ensure current s
 url="https://my.rightscale.com/acct/$rs_api_account_id/servers"
 echo "POST: $url"
 
-result=$(curl -v -S -s -X POST \
+result=$(curl -v       -X POST \
 -b "$HOME/.rightscale/rs_dashboard_cookie.txt" \
 -H "Referer:https://my.rightscale.com/acct/$rs_api_account_id/servers/new?cloud_id=$rs_cloud_id&deployment_id=$deployment_id" \
 -H "User-Agent:Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_4) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/21.0.1180.82 Safari/537.1" \
@@ -104,7 +107,7 @@ result=$(curl -v -S -s -X POST \
 -d runnable[ec2_ssh_key_id]="$ec2_ssh_key_id" \
 -d runnable[ec2_elastic_ip_id]="$ec2_elastic_ip_id" \
 -d runnable[associate_eip_at_launch]="0" \
--d runnable[ec2_security_group_ids][]="126311" \
+$ec2_security_group_ids_str \
 -d runnable[ec2_availability_zone_id]="$ec2_availability_zone_id" \
 -d runnable[ec2_placement_group_id]="$ec2_placement_group_id" \
 -d runnable[image_uid]="$image_uid" \
