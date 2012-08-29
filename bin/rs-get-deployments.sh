@@ -1,4 +1,4 @@
-#!/bin/sh -ex
+#!/bin/sh -e
 
 # rs-geet-deployments.sh [filter] [settings] 
 # e.g. rs-get-deployments.sh 'nickname[]=Red Dwarf'
