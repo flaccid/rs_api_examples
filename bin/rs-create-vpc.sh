@@ -1,5 +1,7 @@
 #! /bin/bash
 
+# Warning: This script scrapes information from the RightScale dashboard (portal).  Do not use this script for production or any important purposes.  RightScale cannot guarantee this script to work now or in the future.
+
 # rs-create-vpc.sh <rs_cloud_id> <name> <cidr_block> <instance_tenancy> <description>
 
 # e.g. rs-create-vpc.sh 4 'Red Dwarf' "10.1.1.0/24" default 'This is a test VPC.'
