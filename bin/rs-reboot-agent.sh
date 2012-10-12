@@ -1,6 +1,6 @@
 # !/bin/sh -e
 
-# rs-reboot-agent.sh <server_id>
+# rs-reboot-agent.sh
 
 # this script does not require the RightScale API; local commands are used to restart rightlink and run boot scripts
 
