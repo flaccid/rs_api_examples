@@ -18,11 +18,9 @@
 
 rs_cloud_id="$1"
 
-#url="https://my.rightscale.com/acct/$rs_api_account_id/clouds/$rs_cloud_id/ec2_instances/requery"
-url="https://my.rightscale.com/acct/$rs_api_account_id/dashboard;overview"
+url="https://my.rightscale.com/acct/$rs_api_account_id/clouds/$rs_cloud_id/ec2_instances/requery"
 
 result=$(curl -v -s -S -b "$HOME/.rightscale/rs_dashboard_cookie.txt" "$url" 2>&1)
-#curl -s -c -b "$HOME/.rightscale/rs_dashboard_cookie.txt" -u "$rs_api_user":"$rs_api_password" "$url"
 
 case $result in
 	*"200 OK"*)
