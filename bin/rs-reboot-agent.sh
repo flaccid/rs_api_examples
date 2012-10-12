@@ -2,8 +2,7 @@
 
 # rs-reboot-agent.sh <server_id>
 
-. "$HOME/.rightscale/rs_api_config.sh"
-. "$HOME/.rightscale/rs_api_creds.sh"
+# this script does not require the RightScale API; local commands are used to restart rightlink and run boot scripts
 
 echo 'Rebooting RightScale/RightLink.'
 
