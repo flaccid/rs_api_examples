@@ -56,8 +56,8 @@ echo
 echo 'Is this correct?'
 if asksure; then
 cat <<EOF> "$HOME/.rightscale/rs_api_config.sh"
-rs_api_version=$rs_api_version
 rs_api_cookie="$HOME/.rightscale/rs_api_cookie.txt"
+: \${rs_api_version:=$rs_api_version}
 EOF
 cat <<EOF> "$HOME/.rightscale/rs_api_creds.sh"
 rs_api_account_id=$rs_api_account_id
