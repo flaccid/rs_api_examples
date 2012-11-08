@@ -30,6 +30,15 @@ url="https://my.rightscale.com/api/acct/$rs_api_account_id/servers?filter=nickna
 
 echo "GET: $url"
 
-result=$(curl -s -S -v -H "X-API-VERSION: $rs_api_version" -b "$rs_api_cookie" "$url")
+api_result=$(curl -s -S -H "X-API-VERSION: $rs_api_version" -b "$rs_api_cookie" "$url" 2>&1)
 
-echo "$result"
+case "$api_result" in 
+  *xml\ version*)
+    echo "$api_result"
+    exit
+  ;;
+  *)
+    echo "FAILED: $api_result"
+    exit 1
+  ;;
+esac
