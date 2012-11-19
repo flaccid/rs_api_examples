@@ -2,7 +2,8 @@
 
 # rs-run-rightscript-array.sh <rightscript_id> <server_array_id> [<servertemplate_id>]
 #
-# e.g.    rs-run-rightscript-array.sh 278706001 203474001 226619001
+# e.g.    rs-run-rightscript-array.sh 278706001 203474001 226619001               # API 1.0/default
+#         rs_api_version=1.5 rs-run-rightscript-array.sh 278706001 214955001      # API 1.5 (non-EC2 Server Array)
 #
 # source: https://github.com/flaccid/rs_api_examples/blob/master/bin/rs-run-rightscript-array.sh
 
