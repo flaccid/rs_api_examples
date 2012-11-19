@@ -1,8 +1,8 @@
 #!/bin/bash -e
 
-# rs-run-rightscript-array.sh <rightscript_id> <server_array_id> [<servertemplate_id>]
+# rs-run-rightscript-array.sh <rightscript_id> <server_array_id> <servertemplate_id>
 
-# e.g.   rs-run-rightscript-array.sh 1234 4321
+# e.g.   rs-run-rightscript-array.sh 278706001 203474001 226619001
 
 [[ ! $1 ]] && echo 'No rightscript ID provided, exiting.' && exit 1
 [[ ! $2 ]] && echo 'No server array ID provided, exiting.' && exit 1
