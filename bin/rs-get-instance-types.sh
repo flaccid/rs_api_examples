@@ -2,8 +2,8 @@
 
 # rs-get-instance-types.sh <rs_cloud_id>
 
-# e.g. rs-get-instance-types.sh 232							# 232=Rackspace
-#      rs_api_version=1.5 rs-get-instance-types.sh 1869		# 1869=Softlayer
+# e.g. rs-get-instance-types.sh 232                         # 232=Rackspace
+#      rs_api_version=1.5 rs-get-instance-types.sh 1869     # 1869=Softlayer
 
 . "$HOME/.rightscale/rs_api_config.sh"
 . "$HOME/.rightscale/rs_api_creds.sh"
