@@ -15,14 +15,14 @@ rs_cloud_id="$1"
 
 case $rs_api_version in
 	*1.0*)
-	echo 'This operation is not supported in RightScale API 1.0, exiting.'
-	exit 1
+		echo 'This operation is not supported in RightScale API 1.0, exiting.'
+		exit 1
 	;;
-  *1.5*)
-    api_url="https://my.rightscale.com/api/clouds/$rs_cloud_id/instance_types.xml"
-    echo "[API $rs_api_version] GET: $api_url"
-    api_result=$(curl -s -S -H "X-API-VERSION: $rs_api_version" -b "$rs_api_cookie" "$api_url")
-  ;;
+	*1.5*)
+		api_url="https://my.rightscale.com/api/clouds/$rs_cloud_id/instance_types.xml"
+		echo "[API $rs_api_version] GET: $api_url"
+		api_result=$(curl -s -S -H "X-API-VERSION: $rs_api_version" -b "$rs_api_cookie" "$api_url")
+	;;
 esac
 
 echo "$api_result"
