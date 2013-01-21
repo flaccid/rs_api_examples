@@ -71,4 +71,14 @@ api_result=$(curl -X POST -v -s -S -b "$HOME/.rightscale/rs_dashboard_cookie.txt
 	-d "runnable[deployment_id]=$deployment_id" \
  	"$api_url" 2>&1)
 
-echo "$api_result"
+case $api_result in
+	*"200 OK"*)
+		echo "Server, '$server_nickname' successfully created."
+		echo "$api_result" | grep redirect_url
+	;;
+	*)
+		echo "$api_result"
+		echo "Creation of server, '$server_nickname' failed!"
+		exit 1
+	;;
+esac
