@@ -1,8 +1,9 @@
 #!/bin/sh -e
 
-# Warning: This script scrapes information from the RightScale dashboard (portal).  Do not use this script for production or any important purposes.  RightScale cannot guarantee this script to work now or in the future.
+# rs-clone-st.sh <server_template_id>
 
-# rs-clone-st.sh <server_template_id> 
+# Warning: This script posts information to the RightScale dashboard.
+# It is not recommended to use this script for production purposes. RightScale cannot guarantee this script will work now or in the future.
 
 [ ! "$1" ] && echo 'No server_template_id ID provided.' && exit 1
 

@@ -1,8 +1,9 @@
 #! /bin/sh -e
 
-# Warning: This script scrapes information from the RightScale dashboard (portal).  Do not use this script for production or any important purposes.  RightScale cannot guarantee this script to work now or in the future.
-
 # rs-login-dashboard.sh
+
+# Warning: This sends a request to the RightScale dashboard.
+# It is not recommended to use this script for production purposes. RightScale cannot guarantee this script will work now or in the future.
 
 [ -e "$HOME"/rightscale ] || ( mkdir -p "$HOME"/rightscale && chmod -R 700 "$HOME"/.rightscale )
 

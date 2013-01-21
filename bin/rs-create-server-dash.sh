@@ -1,10 +1,11 @@
 #! /bin/bash -e
 
 # rs-create-server-dash.sh <nickname> <rs_cloud_id> <deployment_id> <server_template_id> <ec2_instance_type> <ec2_pricing> <nat_enabled> <ec2_ssh_key_id> <vpc_subnet_id>
+
 # e.g. rs-create-server-dash.sh 'Starbug' 4 281233001 252761001 't1.micro' 'on_demand' 0 209585 201548001
 
-# Warning: This script posts information to the RightScale dashboard (portal).
-# Do not use this script for production or any important purposes.  RightScale cannot guarantee this script to work now or in the future.
+# Warning: This script posts information to the RightScale dashboard.
+# It is not recommended to use this script for production purposes. RightScale cannot guarantee this script will work now or in the future.
 
 # RightScale (public) cloud IDs
 #1  US-East

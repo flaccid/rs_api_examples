@@ -1,10 +1,11 @@
 #!/bin/bash -e
 
-# Warning: This script scrapes information from the RightScale dashboard (portal).  Do not use this script for production or any important purposes.  RightScale cannot guarantee this script to work now or in the future.
+# rs-create-internet-gateway.sh <nickname> <rs_cloud_id> <vpc_id>
 
-# rs-internet-gateway.sh <nickname> <rs_cloud_id> <vpc_id>
+# e.g. rs-create-internet-gateway.sh  my_gw 2 123456
 
-# e.g. rs-create-server.sh  my_gw 2 123456
+# Warning: This script posts information to the RightScale dashboard.
+# It is not recommended to use this script for production purposes. RightScale cannot guarantee this script will work now or in the future.
 
 # RightScale (public) cloud IDs
 #1  US-East

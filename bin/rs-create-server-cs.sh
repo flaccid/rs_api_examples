@@ -5,7 +5,7 @@
 # e.g. rs-create-server-cs.sh 2365 309357001 273511001 "i did this from curl" 277375001 FRA04CD0FVQD C3UAOU9DAB6KM 2M6PGCI3RJ7EM EOGJ4VM1M5CB8
 
 # Warning: This script posts information to the RightScale dashboard.
-# Do not use this script for production or any important purposes.  RightScale cannot guarantee this script to work now or in the future.
+# It is not recommended to use this script for production purposes. RightScale cannot guarantee this script will work now or in the future.
 
 # form data example
 #server_template_id:273511001

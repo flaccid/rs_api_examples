@@ -1,10 +1,11 @@
 #! /bin/bash
 
-# Warning: This script scrapes information from the RightScale dashboard (portal).  Do not use this script for production or any important purposes.  RightScale cannot guarantee this script to work now or in the future.
-
 # rs-create-vpc-subnet.sh <rs_cloud_id> <rs_vpc_id> <subnet_name> <cidr_block> <rs_ec2_availability_zone_id> <description>
 
 # e.g. rs-create-vpc-subnet.sh 4 200800001 'FoobarSubnet' "10.1.1.0/24" 123320 'This is a test VPC subnet.'
+
+# Warning: This script posts information to the RightScale dashboard.
+# It is not recommended to use this script for production purposes. RightScale cannot guarantee this script will work now or in the future.
 
 # RightScale EC2 AZ IDs
 #123319 ap-southeast-1a
