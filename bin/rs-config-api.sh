@@ -36,6 +36,11 @@ read -rp 'RightScale Account ID: ' rs_api_account_id
 	do read -rp 'Requires a value, try again: ' rs_api_account_id
 done
 
+read -rp 'RightScale server shard (e.g. my.rightscale.com): ' rs_server
+	until [[ $rs_server ]]
+	do read -rp 'Requires a value, try again: ' rs_server
+done
+
 read -rp 'RightScale API Version (e.g. 1.0): ' rs_api_version
 	until [[ $rs_api_version ]]
 	do read -rp 'Requires a value, try again: ' rs_api_version
@@ -48,6 +53,7 @@ echo '== Confirmation =='
 echo "User: $rs_api_user"
 echo "Password: <hidden>"
 echo "Account ID: $rs_api_account_id"
+echo "Server/shard: $rs_server"
 echo "API Version: $rs_api_version"
 echo "=="
 echo
@@ -58,6 +64,8 @@ if asksure; then
 cat <<EOF> "$HOME/.rightscale/rs_api_config.sh"
 rs_api_cookie="$HOME/.rightscale/rs_api_cookie.txt"
 : \${rs_api_version:=$rs_api_version}
+rs_server=$rs_server
+: \${rs_server:=$rs_server}
 EOF
 cat <<EOF> "$HOME/.rightscale/rs_api_creds.sh"
 rs_api_account_id=$rs_api_account_id
