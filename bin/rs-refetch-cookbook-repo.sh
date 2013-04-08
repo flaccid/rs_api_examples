@@ -1,8 +1,9 @@
 #! /bin/sh -e
 
-# Warning: This script scrapes information from the RightScale dashboard (portal).  Do not use this script for production or any important purposes.  RightScale cannot guarantee this script to work now or in the future.
-
 # rs-refetch-cookbook-repo.sh <cookbook_repos_id>
+
+# Warning: This script sends a request to the RightScale dashboard.
+# It is not recommended to use this script for production purposes. RightScale cannot guarantee this script will work now or in the future.
 
 [[ ! $1 ]] && echo 'No cookbooks_repos ID provided.' && exit 1
 

@@ -22,6 +22,8 @@ else
 	url="https://my.rightscale.com/api/acct/$rs_api_account_id/server_arrays/$array_id/instances"
 fi
 
-echo "GET: $url"
+echo "[API $rs_api_version] GET: $url"
+
 api_result=$(curl -X GET -s -H "X-API-VERSION: $rs_api_version" -b "$rs_api_cookie" "$url")
+
 echo "$api_result"

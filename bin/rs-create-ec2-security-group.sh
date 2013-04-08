@@ -1,10 +1,11 @@
 #! /bin/bash
 
-# Warning: This script scrapes information from the RightScale dashboard (portal).  Do not use this script for production or any important purposes.  RightScale cannot guarantee this script to work now or in the future.
-
 # rs-create-ec2-security-group.sh <rs_cloud_id> <aws_group_name> <aws_description> <scope> <rs_vpc_id>
 
 # e.g. rs-create-ec2-security-group.sh 4 'UberSecure' 'This is just a test security group' vpc 200634001
+
+# Warning: This script posts information to the RightScale dashboard.
+# It is not recommended to use this script for production purposes. RightScale cannot guarantee this script will work now or in the future. 
 
 [[ ! $1 ]] && echo 'No RightScale cloud ID provided.' && exit 1
 [[ ! $2 ]] && echo 'No security group name provided.' && exit 1
