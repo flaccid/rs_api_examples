@@ -1,9 +1,16 @@
 #! /bin/sh -e
 
+<<<<<<< HEAD
 # Warning: This script posts information to the RightScale dashboard.
 # Do not use this script for production or any important purposes.  RightScale cannot guarantee this script to work now or in the future.
 
 # rs-query-cloud.sh <rs_cloud_id> <component>
+=======
+# rs-query-cloud.sh <rs_cloud_id>
+>>>>>>> 8b61131c6279eee8d468250b2a268f3a3ee22a1a
+
+# Warning: This script posts information to the RightScale dashboard.
+# It is not recommended to use this script for production purposes. RightScale cannot guarantee this script will work now or in the future.
 
 # RightScale (public) cloud IDs
 #1  US-East
