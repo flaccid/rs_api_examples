@@ -18,11 +18,11 @@
 
 # get and store the cookie
 if [ "$rs_api_version" = "1.5" ]; then
-	url="https://my.rightscale.com/api/session"
+	url="https://$rs_server/api/session"
 	echo "[API 1.5] POST: $url"
 	result=$(curl -s -S -v -H 'X_API_VERSION: 1.5' -c "$rs_api_cookie" -X POST -d email="$rs_api_user" -d password="$rs_api_password" -d account_href=/api/accounts/$rs_api_account_id "$url" 2>&1)
 else
-	url="https://my.rightscale.com/api/acct/$rs_api_account_id/login?api_version=$rs_api_version"
+	url="https://$rs_server/api/acct/$rs_api_account_id/login?api_version=$rs_api_version"
 	echo "[API 1.0] GET: $url"
 	result=$(curl -s -S -v -c "$rs_api_cookie" -u "$rs_api_user":"$rs_api_password" "$url" 2>&1)
 fi
