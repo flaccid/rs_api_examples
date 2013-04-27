@@ -1,6 +1,7 @@
 #! /bin/bash -e
 
 # rs-create-server.sh <nickname> <rs_cloud_id> <deployment_href> <server_template_href> <ec2_instance_type> <ec2_pricing> <ec2_ssh_key_href> <ec2_security_group_hrefs> <e2_ebs_optimized>
+
 # e.g. rs-create-server.sh 'Starbug' 3 "https://my.rightscale.com/api/acct/7954/deployments/49302" "https://my.rightscale.com/api/acct/7954/server_templates/262048001" 't1.micro' 'on_demand' "https://my.rightscale.com/acct/7954/clouds/3/ec2_ssh_keys/182526" "https://my.rightscale.com/acct/7954/clouds/3/ec2_security_groups/106112" 1
 
 # RightScale (public) cloud IDs
@@ -36,7 +37,7 @@ ec2_security_groups_href="$8"
 ec2_ebs_optimized="$9"
 : ${ec2_ebs_optimized:=0}
 
-url="https://my.rightscale.com/api/acct/$rs_api_account_id/servers"
+url="https://$rs_server/api/acct/$rs_api_account_id/servers"
 echo "POST: $url"
 
 result=$(curl -v -S -s -X POST \
