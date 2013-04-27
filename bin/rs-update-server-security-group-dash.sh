@@ -1,8 +1,8 @@
 #!/bin/sh -e
 
-# rs-update-server-security-group-dash.sh <server_id> <ec2_security_group_id> <deployment_id> [[debug]]
+# rs-update-server-security-group-dash.sh <server_id> <ec2_security_group_id> <deployment_id> <server_template_id> <ebs_optimized> [[debug]]
 
-# e.g. rs-update-server-security-group-dash.sh 256652022 285049011
+# e.g. rs-update-server-security-group-dash.sh 256660008 285049008 214931008 213739008 231678008 0 debug
 
 [ ! "$1" ] && echo 'No server ID provided, exiting.' && exit 1
 
@@ -12,10 +12,13 @@
 rs_server_id="$1"
 ec2_security_group_id="$2"
 deployment_id="$3"
+server_template_id="$4"
+ec2_ssh_key_id="$5"
+ebs_optimized="$6"
 
 authenticity_token=$(./rs-get-authenticity-token-dash.sh $1)
 
-if [ "$4" == 'debug' ]; then
+if [ "$7" == 'debug' ]; then
 	echo "Authenticity token: $authenticity_token"
 fi
 
@@ -30,37 +33,28 @@ result=$(curl -v -S -s -X POST \
 -H "Referer:https://$rs_server/acct/$rs_api_account_id/servers/$rs_server_id/info;edit" \
 -H "X-Requested-With:XMLHttpRequest" \
 -d next_server="true" \
--d runnable[server_template_id]=213739008 \
 -d runnable[deployment_id]="$deployment_id" \
 -d id="$rs_server_id" \
 -d stage_names[]='ServerTemplate' \
 -d stage_names[]='Server Details' \
 -d stage_names[]='Confirm' \
 -d _method='put' \
--d cloud_id=8 \
--d server_template_id=213739008 \
 -d authenticity_token="$authenticity_token" \
--d runnable[nickname]='VPC Create Test' \
--d runnable[instance_type]='t1.micro' \
--d runnable[pricing]='on_demand' \
--d runnable[max_spot_price]='0.02' \
--d runnable[ebs_optimized]=0 \
--d runnable[vpc_subnet_id]=200291008 \
--d runnable[nat_enabled]=0 \
--d runnable[ec2_ssh_key_id]=231678008 \
--d runnable[associate_eip_at_launch]=0 \
--d runnable[associate_eip_at_launch]=1 \
 -d runnable[ec2_security_group_ids][]="$ec2_security_group_id" \
--d runnable[ec2_elastic_ip_id]='' \
--d runnable[placement_tenancy]='' \
--d runnable[private_ip_address]='' \
--d runnable[multi_cloud_image_id]='' \
--d runnable[image_uid]='' \
--d runnable[ari_image_uid]='' \
--d runnable[aki_image_uid]='' \
--d runnable[ec2_user_data]='' \
--d runnable[ec2_availability_zone_id]= '' \
--d runnable[ec2_placement_group_id]='' \
+-d runnable[server_template_id]="$server_template_id" \
+-d runnable[ec2_ssh_key_id]="$ec2_ssh_key_id" \
+-d runnable[ebs_optimized]="$ebs_optimized" \
 "$url" 2>&1)
 
-echo "$result"
+case $result in
+	*'redirect_url'*)
+		echo 'Server successfully updated.'
+		echo "$result" | grep redirect_url
+		exit
+	;;
+	*)
+		echo 'Server update failed!'
+		echo "$result"
+		exit 1
+	;;
+esac
