@@ -12,5 +12,7 @@
 
 url="https://my.rightscale.com/api/acct/$rs_api_account_id/servers/$1$current$settings"
 echo "GET: $url"
-server_xml=$(curl -s -H "X-API-VERSION: $rs_api_version" -b "$rs_api_cookie" "$url")
-echo "$server_xml"
+
+api_result=$(curl -s -H "X-API-VERSION: $rs_api_version" -b "$rs_api_cookie" "$url")
+
+echo "$api_result"
