@@ -2,6 +2,8 @@
 
 # rs-login-dashboard.sh
 
+# e.g. rs_server=jp-8.rightscale.com rs-login-dashboard			# logs user into the Japan shard explicitly
+
 # Warning: This sends a request to the RightScale dashboard.
 # It is not recommended to use this script for production purposes. RightScale cannot guarantee this script will work now or in the future.
 
@@ -11,7 +13,7 @@
 . "$HOME/.rightscale/rs_api_creds.sh"
 
 # Login to the dashboard non-interactively
-url="https://my.rightscale.com/session"
+url="https://$rs_server/session"
 echo "GET: $url"
 
 result=$(curl -v -s -S -c "$HOME/.rightscale/rs_dashboard_cookie.txt" -u "$rs_api_user:$rs_api_password" -d account="$rs_api_account_id" -X PUT "$url" 2>&1)
@@ -19,6 +21,7 @@ result=$(curl -v -s -S -c "$HOME/.rightscale/rs_dashboard_cookie.txt" -u "$rs_ap
 case $result in
 	*"dashboard;overview"*)
 		echo 'Login successful.'
+		echo "Cookie was saved to $HOME/.rightscale/rs_dashboard_cookie.txt."
 	;;
 	*)
 		echo "$result"
