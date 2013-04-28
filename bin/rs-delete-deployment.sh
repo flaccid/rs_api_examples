@@ -11,5 +11,7 @@ deployment_id="$1"
 
 url="https://my.rightscale.com/api/acct/$rs_api_account_id/deployments/$deployment_id"
 echo "DELETE: $url"
+
 api_result=$(curl -s -H "X-API-VERSION: $rs_api_version" -b "$rs_api_cookie" --request DELETE "$url")
+
 echo "$api_result"
