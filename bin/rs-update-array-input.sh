@@ -1,6 +1,6 @@
 #!/bin/sh -e
 
-# rs-update-input.sh <server_id> <input-name> <input-value> [current]
+# rs-update-input.sh <array-id> <input-name> <input-value> [current]
 
 # e.g. rs-update-input 836587 'WEATHER_STATE' 'text:rainy' current
 #      rs-update-input 836587 'WEATHER_STATE' 'text:sunny'
