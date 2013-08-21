@@ -16,6 +16,7 @@
 . "$HOME/.rightscale/rs_api_config.sh"
 . "$HOME/.rightscale/rs_api_creds.sh"
 
+
 # get and store the cookie
 if [ "$rs_api_version" = "1.5" ]; then
 	url="https://$rs_server/api/session"

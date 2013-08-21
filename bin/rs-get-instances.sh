@@ -11,7 +11,7 @@
 rs_cloud_id="$1"
 rs_api_version=1.5
 
-api_url="https://my.rightscale.com/api/clouds/$rs_cloud_id/instances.xml"
+api_url="https://$rs_server/api/clouds/$rs_cloud_id/instances.xml"
 echo "[API $rs_api_version] GET: $api_url"
 
 api_result=$(curl -s -S -H "X-API-VERSION: $rs_api_version" -b "$rs_api_cookie" "$api_url")
