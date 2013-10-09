@@ -6,6 +6,7 @@
 # opening http://www.rightscale.com/library/server_templates/Load-Balancer-with-HAProxy-1-5/lineage/45420
 # provides https://my.rightscale.com/library/server_templates/Load-Balancer-with-HAProxy-1-5/179414
 # => 179414 is the publication ID
+# for older revisions in the lineage, hover over the 'Import Revision' link next to the revision to find its publication ID
 
 [ ! "$1" ] && echo 'No publication ID provided.' && exit 1
 
