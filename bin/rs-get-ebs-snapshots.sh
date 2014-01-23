@@ -16,7 +16,7 @@
 
 rs_api_version=1.0
 
-url="https://my.rightscale.com/api/acct/$rs_api_account_id/ec2_ebs_snapshots$1"
+url="https://$rs_server/api/acct/$rs_api_account_id/ec2_ebs_snapshots$1"
 echo "GET: $url"
 
 xml=$(curl -s -H "X-API-VERSION: $rs_api_version" -b "$rs_api_cookie" "$url")
