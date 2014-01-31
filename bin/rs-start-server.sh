@@ -6,11 +6,12 @@
 . "$HOME/.rightscale/rs_api_creds.sh"
 
 [[ ! $1 ]] && echo 'No server ID provided, exiting.' && exit 1
+
 server_id="$1"
+rs_api_version='1.0'
+url="https://$rs_server/api/acct/$rs_api_account_id/servers/$server_id/start_ebs"
 
-url="https://my.rightscale.com/api/acct/$rs_api_account_id/servers/$server_id/start_ebs"
-
-echo "GET: $url"
+echo "[API $rs_api_version] POST: $url"
 
 api_result=$(curl -s -S -v -X POST -H "X-API-VERSION: $rs_api_version" -b "$rs_api_cookie" $url 2>&1)
 
