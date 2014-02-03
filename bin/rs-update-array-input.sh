@@ -17,7 +17,7 @@ fi
 params="server_array[parameters][$2]=$3"
 echo "params: $params"
 
-url="https://$rs_server/api/acct/$rs_api_account_id/server_arrays/$1$
+url="https://$rs_server/api/acct/$rs_api_account_id/server_arrays/$1"
 echo "PUT: $url"
 
 curl -H "X-API-VERSION:$rs_api_version" -b "$rs_api_cookie" --request PUT -d "$params" "$url"
