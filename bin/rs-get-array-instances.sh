@@ -1,25 +1,23 @@
 #! /bin/sh -e
 
-# rs-get-array-instances <server_array_id> [<api_version>]
+# rs-get-array-instances <server_array_id>
 
-if [ ! "$1" ]; then 
-	echo 'No server array ID provided, exiting.'
-	echo "Usage: rs-get-array-instances <server_array_id> [<api_version>]"
-	exit 1
-fi
+# e.g. rs-get-array instances 224896003
+#      rs_api_version=1.0 rs-get-array-instances 224896003
+
+[ ! "$1" ] &&	echo 'No server array ID provided, exiting.'
 
 . "$HOME/.rightscale/rs_api_config.sh"
 . "$HOME/.rightscale/rs_api_creds.sh"
 
 array_id="$1"
-[ "$2" ] && rs_api_version="$2"
 
 echo "Fetching current instances for server array, $array_id."
 
 if [ "$rs_api_version" = 1.5 ]; then
-	url="https://my.rightscale.com/api/server_arrays/$array_id/current_instances.xml"
+	url="https://$rs_server/api/server_arrays/$array_id/current_instances.xml"
 else
-	url="https://my.rightscale.com/api/acct/$rs_api_account_id/server_arrays/$array_id/instances"
+	url="https://$rs_server/api/acct/$rs_api_account_id/server_arrays/$array_id/instances"
 fi
 
 echo "[API $rs_api_version] GET: $url"
