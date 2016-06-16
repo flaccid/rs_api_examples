@@ -7,8 +7,8 @@
 echo 'Rebooting RightScale/RightLink.'
 
 # reboot rightscale/rightlink
-/opt/rightscale/sandbox/bin/ruby /opt/rightscale/right_link/bin/rnac.rb --stop instance
+/opt/rightscale/sandbox/bin/ruby /opt/rightscale/sandbox/bin/rnac --stop instance
 service rightlink stop
 service rightscale start
-service rightboot start
+#service rightboot start
 service rightlink start
