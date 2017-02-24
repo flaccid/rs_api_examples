@@ -31,7 +31,7 @@ api_result=$(curl -s -S -i -H X_API_VERSION:1.5 -H "Authorization: Bearer $rs_ac
 	-d user[company]="$company" \
 	-d user[phone]="$phone" \
 	-d user[first_name]="$first_name" \
-	-d user[last_name]=Doe \
+	-d user[last_name]="$last_name" \
 	-d user[identity_provider_href]="$identity_provider_href" \
 	-d user[principal_uid]="$email" \
 	"$url" 2>&1)
