@@ -41,7 +41,7 @@ read -rp 'RightScale server shard (e.g. my.rightscale.com): ' rs_server
 	do read -rp 'Requires a value, try again: ' rs_server
 done
 
-read -rp 'RightScale API Version (e.g. 1.0): ' rs_api_version
+read -rp 'RightScale API Version (e.g. 1.5): ' rs_api_version
 	until [[ $rs_api_version ]]
 	do read -rp 'Requires a value, try again: ' rs_api_version
 done
