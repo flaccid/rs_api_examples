@@ -16,12 +16,16 @@
 . "$HOME/.rightscale/rs_api_config.sh"
 . "$HOME/.rightscale/rs_api_creds.sh"
 
-
 # get and store the cookie
 if [ "$rs_api_version" = "1.5" ]; then
-	url="https://$rs_server/api/session"
+	url="https://$rs_server/api/sessions"
 	echo "[API 1.5] POST: $url"
-	result=$(curl -s -S -v -H 'X_API_VERSION: 1.5' -c "$rs_api_cookie" -X POST -d email="$rs_api_user" -d password="$rs_api_password" -d account_href=/api/accounts/$rs_api_account_id "$url" 2>&1)
+	result=$(curl -s -S -v \
+		-H 'X-Api-Version: 1.5' \
+		-c "$rs_api_cookie" \
+		-d email="$rs_api_user" \
+		-d password="$rs_api_password" \
+		-d account_href=/api/accounts/$rs_api_account_id "$url" 2>&1)
 else
 	url="https://$rs_server/api/acct/$rs_api_account_id/login?api_version=$rs_api_version"
 	echo "[API 1.0] GET: $url"
