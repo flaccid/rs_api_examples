@@ -10,7 +10,7 @@ touch "$HOME/.rightscale/rs_api_creds.sh"
 
 # functions
 asksure() {
-	echo "Are you sure (Y/N)? "
+	echo "are you sure (y/n)? "
 	while read -r -n 1 -s answer; do
   		if [[ $answer = [YyNn] ]]; then
     		[[ $answer = [Yy] ]] && retval=0
@@ -21,45 +21,49 @@ asksure() {
 	return $retval
 }
 
-read -rp 'RightScale Username: ' rs_api_user
+read -rp 'rightscale username: ' rs_api_user
 	until [[ $rs_api_user ]]
-	do read -rp 'Requires a value, try again: ' rs_api_user
+	do read -rp 'requires a value, try again: ' rs_api_user
 done
 
-read -rp 'RightScale Password: ' rs_api_password
+read -rsp 'rightscale password: ' rs_api_password
 	until [[ $rs_api_password ]]
-	do read -rp 'Requires a value, try again: ' rs_api_password
+	do read -rp 'requires a value, try again: ' rs_api_password
 done
+echo
 
-read -rp 'RightScale Account ID: ' rs_api_account_id
+read -rp 'rightscale account id: ' rs_api_account_id
 	until [[ $rs_api_account_id ]]
-	do read -rp 'Requires a value, try again: ' rs_api_account_id
+	do read -rp 'requires a value, try again: ' rs_api_account_id
 done
 
-read -rp 'RightScale server shard (e.g. my.rightscale.com): ' rs_server
+read -rep 'rightscale endpoint:
+    -> this is also known as a shard.
+    -> see http://docs.rightscale.com/api/general_usage.html
+    -> all accounts reside on a specific shard, e.g. us-3.rightscale.com : ' rs_server
 	until [[ $rs_server ]]
-	do read -rp 'Requires a value, try again: ' rs_server
+	do read -rp 'requires a value, try again: ' rs_server
 done
 
-read -rp 'RightScale API Version (e.g. 1.5): ' rs_api_version
+read -rp 'rightscale api version, e.g. 1.5 : ' rs_api_version
 	until [[ $rs_api_version ]]
-	do read -rp 'Requires a value, try again: ' rs_api_version
+	do read -rp 'requires a value, try again: ' rs_api_version
 done
 
 # confirmation
 clear
 echo
-echo '== Confirmation =='
-echo "User: $rs_api_user"
-echo "Password: <hidden>"
-echo "Account ID: $rs_api_account_id"
-echo "Server/shard: $rs_server"
-echo "API Version: $rs_api_version"
+echo '== confirmation =='
+echo "user: $rs_api_user"
+echo "password: <hidden>"
+echo "account id: $rs_api_account_id"
+echo "endpoint/shard: $rs_server"
+echo "api version: $rs_api_version"
 echo "=="
 echo
 
 # ask if ok to save
-echo 'Is this correct?'
+echo 'is this correct?'
 if asksure; then
 cat <<EOF> "$HOME/.rightscale/rs_api_config.sh"
 rs_api_cookie="$HOME/.rightscale/rs_api_cookie.txt"
@@ -71,7 +75,7 @@ rs_api_account_id=$rs_api_account_id
 rs_api_user="$rs_api_user"
 rs_api_password="$rs_api_password"
 EOF
-	echo 'Settings saved.'
+	echo 'settings saved.'
 else
 	echo "operation cancelled."
 fi
