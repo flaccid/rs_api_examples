@@ -16,7 +16,7 @@ echo "[API $rs_ca_api_version] GET: $api_url"
 api_result=$(curl -Ss --include \
   -H "X-API-Version: $rs_ca_api_version" \
   -b "$rs_api_cookie"  \
-  --request GET "$api_url")
+  --request GET "$api_url" 2>&1)
 
 case $api_result in
 	*'200 OK'*)
@@ -25,7 +25,7 @@ case $api_result in
 	;;
 	*)
 		echo 'API query failed!'
-		echo "$result"
+		echo "$api_result"
 		exit 1
 	;;
 esac
