@@ -28,7 +28,7 @@ case $rs_api_version in
   ;;
 esac
 
-case "$api_result" in 
+case "$api_result" in
   \<*\>)
     echo "$api_result"
   ;;
